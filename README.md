@@ -32,8 +32,22 @@ ES6 includes the following new features:
 
 ### Arrows
 Arrows are a function shorthand using the `=>` syntax.  They are syntactically similar to the related feature in C#, Java 8 and CoffeeScript.  They support both statement block bodies as well as expression bodies which return the value of the expression.  Unlike functions, arrows share the same lexical `this` as their surrounding code.
+Compared to previous ES versions they are anonymous functions.
+The arrows functions cannot be used as object constructors; "new" operator cannot be applied to them.
 
 ```JavaScript
+// Arrow function
+let rectangleArea = (w, h) => {
+  let area = h * w;
+  return area;
+}
+
+// it is similar to an anonymous function
+var rectangleArea = function(w, h){
+  var area = = h * w;
+  return area;
+}
+
 // Expression bodies
 var odds = evens.map(v => v + 1);
 var nums = evens.map((v, i) => v + i);
@@ -184,7 +198,10 @@ f(...[1,2,3]) == 6
 
 ### Let + Const
 Block-scoped binding constructs.  `let` is the new `var`.  `const` is single-assignment.  Static restrictions prevent use before assignment.
-
+In the previous ES versions variables were not block scoped but function scoped.
+Block scoped variables when are declared outside a block they will behave in the same way like a function scoped variable which is declared in the global scope.
+In case of declaring variables with the 'var' keyword and then they are declared again in the same scope they will be overwritten.
+In case we declare a variable with 'let' and then we will re-declare it again in the same scope it will throw a TypeError.
 
 ```JavaScript
 function f() {
@@ -197,7 +214,7 @@ function f() {
       x = "foo";
     }
     // error, already declared in block
-    let x = "inner";
+    let x = "inner"; // TypeError exception
   }
 }
 ```
