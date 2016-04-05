@@ -44,7 +44,7 @@ let rectangleArea = (w, h) => {
 
 // it is similar to an anonymous function
 var rectangleArea = function(w, h){
-  var area = = h * w;
+  var area = h * w;
   return area;
 }
 
